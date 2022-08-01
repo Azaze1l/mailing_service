@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+asgiref = "==3.5.2"
+certifi = "==2022.6.15"
+distlib = "==0.3.5"
+django = "==4.0.6"
+filelock = "==3.7.1"
+pipenv = "==2022.7.24"
+platformdirs = "==2.5.2"
+sqlparse = "==0.4.2"
+tzdata = "==2022.1"
+virtualenv = "==20.16.2"
+virtualenv-clone = "==0.5.7"
+psycopg2 = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
+
+[scripts]
+start_server = "python app/manage.py runserver 0.0.0.0:8000"
