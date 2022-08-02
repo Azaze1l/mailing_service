@@ -8,7 +8,6 @@ class MailingSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'start_datetime',
-            'end_datetime',
             'message_text',
             'tag_filter',
             'mobile_code_filter',

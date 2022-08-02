@@ -1,17 +1,25 @@
-
 from django.urls import path
 from . import views
-
 
 urlpatterns = [
     path(
         'recipient/<int:pk>/',
-        views.RetrieveUpdateDestroyRecipientAPIView.as_view(),
-        name='get_delete_update_recipient',
+        views.UpdateDestroyRecipientAPIView.as_view(),
+        name='delete_update_recipient',
+    ),
+    path(
+        'recipient/',
+        views.CreateRecipientAPIView.as_view(),
+        name='create_recipient',
     ),
     path(
         'mailing/<int:pk>/',
-        views.RetrieveUpdateDestroyMailingAPIView.as_view(),
-        name='get_delete_update_mailing',
+        views.UpdateDestroyMailingAPIView.as_view(),
+        name='delete_update_mailing',
+    ),
+    path(
+        'mailing/',
+        views.CreateMailingAPIView.as_view(),
+        name='create_mailing',
     ),
 ]
