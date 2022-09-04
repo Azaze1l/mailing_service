@@ -12,7 +12,8 @@ services:
     ports:
     - 5432:5432
   web:
-    build: .
+    build: ./app
+    command: pipenv run start_server
     volumes:
       - .:/code
     ports:
@@ -29,18 +30,26 @@ services:
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     depends_on:
       - db
-  rabbitmq:
-    image: rabbitmq
-    ports:
-      - 5672:5672
+      - redis
+  redis:
+    image: redis:alpine
   celery:
-    build: .
-    command: celery -A app.celery_app worker -l info -B
+    build: ./app
+    command: pipenv run start_celery
     environment:
-      - CELERY_BROKER_URL=${CELERY_BROKER_URL}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     depends_on:
-      - rabbitmq
+      - redis
+      - db
+  celery-beat:
+    build: ./app
+    command: pipenv run start_celery_beat
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    depends_on:
+      - redis
       - db

@@ -15,6 +15,4 @@ RUN pip3 install --no-cache-dir --upgrade pipenv
 COPY --from=buildenv /app /app
 
 WORKDIR /app
-COPY app/ ./app
-
-ENTRYPOINT ["bash", "-c" , "pipenv run start_server"]
+COPY . /app

@@ -19,6 +19,7 @@ psycopg2 = "*"
 djangorestframework = "*"
 drf-yasg = "*"
 celery = "*"
+redis = "*"
 
 [dev-packages]
 
@@ -26,4 +27,6 @@ celery = "*"
 python_version = "3.10"
 
 [scripts]
-start_server = "python app/manage.py runserver 0.0.0.0:8000"
+start_server = "python manage.py runserver 0.0.0.0:8000"
+start_celery = "celery -A core worker -l info"
+start_celery_beat = "celery -A core beat -l info"

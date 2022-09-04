@@ -22,4 +22,7 @@ urlpatterns = [
         views.CreateMailingAPIView.as_view(),
         name='create_mailing',
     ),
+    path('test/',
+         views.TestProcessing.as_view(),
+         name='create_mailing')
 ]
